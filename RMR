@@ -1,0 +1,28 @@
+RQD = float(input("Enter the RQD value (%): "))
+UCS = float(input("Enter the uniaxial compressive strength (UCS) in psi: "))
+Ja = float(input("Enter the joint spacing index (Ja) in inches: "))
+Jr = float(input("Enter the joint roughness index (Jr): "))
+Jw = float(input("Enter the joint wall alteration index (Jw): "))
+Srf = float(input("Enter the surface finish of discontinuities index (Srf): "))
+
+RQD_weight = (RQD / 20)
+UCS_weight = (UCS / 1000)
+Ja_weight = (10 - Ja) / 2
+Jr_weight = Jr * 2
+Jw_weight = Jw * 1.5
+Srf_weight = Srf * 0.5
+
+RMR = RQD_weight + UCS_weight + Ja_weight + Jr_weight + Jw_weight + Srf_weight
+
+if RMR < 21:
+    rating = "Very poor"
+elif RMR < 41:
+    rating = "Poor"
+elif RMR < 61:
+    rating = "Fair"
+elif RMR < 81:
+    rating = "Good"
+else:
+    rating = "Excellent"
+
+print("The Rock Mass Rating (RMR) for the rock classification is: " + str(RMR) + " (" + rating + ")")
